@@ -48,6 +48,8 @@ echo $?
 
 SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias picosilly="picocom -b $SILLYBAUD $SILLYPTY"\nalias nc-sillytty="nc $SILLYHOST $SILLYPORT"\nalias socat-sillytty="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
 
+SILLYVARS+='alias newpty="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"
         mkdir $SILLYDEV
