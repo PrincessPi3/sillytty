@@ -1,0 +1,4 @@
+source $HOME/.bashrc
+mkfifo $SILLYPIPE
+nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
+socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE

@@ -4,7 +4,8 @@ letting termux use usb serial devices on stock android without root
 ## installation
 Install these apps
 1. Install [F-Droid](https://f-droid.org/en/) ([Docs](https://f-droid.org/en/docs/))
-2. Install [Termux](https://f-droid.org/en/packages/com.termux/) ([Wiki](https://wiki.termux.com/wiki/Main_Page))3. Install [TCPUART app](https://play.google.com/store/apps/details?id=com.hardcodedjoy.tcpuart)
+2. Install [Termux](https://f-droid.org/en/packages/com.termux/) ([Wiki](https://wiki.termux.com/wiki/Main_Page))
+3. Install [TCPUART app](https://play.google.com/store/apps/details?id=com.hardcodedjoy.tcpuart)
 
 In termux
 1. `pkg update`
@@ -53,3 +54,5 @@ mkfifo $SILLYPIPE
 nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
 socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
 ```
+
+run live dev script: `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/live-dev-script | bash`
