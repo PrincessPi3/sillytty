@@ -1,0 +1,70 @@
+# set -e # stop on errorz
+### `curl https://api.h.acker.is:853/tty/sillytty/install-sillytty | bash`
+SILLYDEV=$HOME/dev
+SILLYTTY=$SILLYDEV/sillytty
+SILLYHOST=10.0.0.201
+SILLYPORT=31337
+SILLYPROTO=tcp
+SILLYBAUD=115200
+# SILLYPACKAGES=netcat-openbsd socat picocom wget
+RCFILE=$HOME/.bashrc
+SILLYPATH=$PATH
+
+# echo "updating repo"
+# pkg update
+
+# echo "upgrading software"
+# pkg upgreade
+
+# echo "installing preerquisites"
+# pkg install $SILLYPACKAGES
+
+echo "downloading start-sillytty"
+wget https://api.h.acker.is:853/tty/sillytty/start-sillytty -O $SILLYPATH/start-sillytty
+echo $?
+
+echo "downloading stop-sillytty"
+wget https://api.h.acker.is:853/tty/sillytty/stop-sillytty -O $SILLYPATH/stop-sillytty
+echo $?
+
+echo "downloading uninstall-sillytty"
+wget https://api.h.acker.is:853/tty/sillytty/uninstall-sillytty -O $SILLYPATH/uninstall-sillytty
+echo $?
+
+echo "downloading vardump-sillytty"
+wget https://api.h.acker.is:853/tty/sillytty/vardump-sillytty -O $SILLYPATH/vardump-sillytty
+echo $?
+
+echo "making start-sillytty executable"
+chmod +x $SILLYPATH/start-sillytty
+echo $?
+
+echo "making stop-sillytty executable"
+chmod +x $SILLYPATH/stop-sillytty
+echo $?
+
+echo "making uninstall-sillytty executable"
+chmod +x $SILLYPATH/uninstall-sillytty
+echo $?
+
+echo "making vardump-sillytty executable"
+chmod +x $SILLYPATH/vardump-sillytty
+echo $?
+
+SILLYVARS="SILLYDEV='\$HOME/dev'\nSILLYTTY='\$SILLYDEV/sillytty'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b \$SILLYBAUD \$SILLYTTY'\n"
+
+if [ ! -d "$SILLYDEV" ]; then
+        echo "$SILLYDEV not found, creating"
+        mkdir $SILLYDEV
+        echo $?
+fi
+
+echo "touching $RCFILE"
+touch $RCFILE
+echo $?
+
+echo "appending vars and alias to $RCFILE"
+echo -e $SILLYVARS >> $RCFILE
+echo $?
+
+echo "DONE! RESTART TERMUX"

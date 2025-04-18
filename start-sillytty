@@ -1,0 +1,28 @@
+# SILLYDEV=$HOME/dev
+# SILLYTTY=$SILLYDEV/sillytty
+# SILLYHOST=10.0.0.201
+# SILLYPORT=31337
+# SILLYPROTO=tcp
+# SILLYBAUD=115200
+# 
+# echo -e "SILLYDEV: $SILLYDEV\nSILLYTTY: $SILLYTTY\nSILLYHOST: $SILLYHOST\nSILLYPORT: $SILLYPORT\nSILLYPROTO: $SILLYPROTO\nSILLYBAUD: $SILLYBAUD\n"
+
+echo "pinging $SILLYHOST"
+ping -c 2 $SILLYHOST
+echo $?
+
+echo "probing $SILLYHOST on $SILLYPROTO port $SILLYPOTR"
+nmap --open -p$SILLYPORT $SILLYHOST
+echo $?
+
+echo "creating the sillytty"
+socat pty,link=$SILLYTTY $SILLYPROTO:$SILLYHOST:$SILLYPORT &
+echo $?
+
+echo "waiting three seconds..."
+
+echo "some info dump"
+ls -lah $SILLYTTY
+file $SILLYTTY
+ps -o tty
+echo "ready!"

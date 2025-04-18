@@ -1,0 +1,3 @@
+echo "killing sillytty"
+killall socat
+echo $?

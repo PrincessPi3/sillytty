@@ -1,0 +1,8 @@
+todo:
+    test UART with picocom
+    start to test other softwarbs
+    mayhaps consolidate da sillytty scripts into one
+    maybe drop wget in favor of curl in installer
+    devise target software and interfaces
+    test blinky butt pirate
+    print $SILLYTTY var and path on start

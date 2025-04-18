@@ -1,0 +1,34 @@
+# printenv
+echo "SILLYDEV: $SILLYDEV"
+touch $SILLYDEV
+echo $?
+ls -lah $SILLYDEV
+
+echo "SILLYTTY: $SILLYTTY"
+# touch $SILLYTTY
+# echo $?
+# ls -lah $SILLYTTY
+
+echo "RCFILE: $HOME/.bashrc"
+cat $HOME/.bashrc
+echo $?
+
+whereis start-sillyfilly
+echo $?
+
+whereis stop-sillyfilly
+echo $?
+
+whereis vardump-sillyfilly
+echo $?
+
+whereis uninstall-sillyfilly
+echo $?
+
+echo "SILLYHOST: $SILLYHOST"
+echo "SILLYPORT: $SILLYPORT"
+echo "SILLYPROTO: $SILLYPROTO"
+echo "SILLYBAUD: $SILLYBAUD"
+echo "SILLYPACKAGES: $SILLYPACKAGES"
+echo "PATH: $PATH"
+
