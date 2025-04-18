@@ -1,4 +1,11 @@
-source $HOME/.bashrc
-mkfifo $SILLYPIPE
-nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
-socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
+# source $HOME/.bashrc
+# mkfifo $SILLYPIPE
+# nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
+# socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
+
+source "$HOME/.bashrc"
+socat pty,nonblock=1,link=$SILLYTTY $SILLYPROTO:$SILLYHOST:$SILLYPORT &
+# nonblock=1
+# fork
+# echo=0
+# raw
