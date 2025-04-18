@@ -22,9 +22,11 @@ socat pty,link=$SILLYTTY $SILLYPROTO:$SILLYHOST:$SILLYPORT &
 echo $?
 
 echo "waiting three seconds..."
+sleep 3
 
 echo "some info dump"
 ls -lah $SILLYTTY
 file $SILLYTTY
 ps -o tty
-echo "ready!"
+echo -e "done!"
+echo "\$SILLYTTY is set to $SILLYTTY"

@@ -1,5 +1,5 @@
 # set -e # stop on errorz
-### `curl https://api.h.acker.is:853/tty/sillytty/install-sillytty | bash`
+### `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
 SILLYDEV=$HOME/dev
 SILLYTTY=$SILLYDEV/sillytty
 SILLYHOST=10.0.0.201
@@ -20,19 +20,19 @@ SILLYPATH=$PATH
 # pkg install $SILLYPACKAGES
 
 echo "downloading start-sillytty"
-wget https://api.h.acker.is:853/tty/sillytty/start-sillytty -O $SILLYPATH/start-sillytty
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/start-sillytty -O $SILLYPATH/start-sillytty
 echo $?
 
 echo "downloading stop-sillytty"
-wget https://api.h.acker.is:853/tty/sillytty/stop-sillytty -O $SILLYPATH/stop-sillytty
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/stop-sillytty -O $SILLYPATH/stop-sillytty
 echo $?
 
 echo "downloading uninstall-sillytty"
-wget https://api.h.acker.is:853/tty/sillytty/uninstall-sillytty -O $SILLYPATH/uninstall-sillytty
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/uninstall-sillytty -O $SILLYPATH/uninstall-sillytty
 echo $?
 
 echo "downloading vardump-sillytty"
-wget https://api.h.acker.is:853/tty/sillytty/vardump-sillytty -O $SILLYPATH/vardump-sillytty
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/vardump-sillytty -O $SILLYPATH/vardump-sillytty
 echo $?
 
 echo "making start-sillytty executable"
@@ -51,7 +51,7 @@ echo "making vardump-sillytty executable"
 chmod +x $SILLYPATH/vardump-sillytty
 echo $?
 
-SILLYVARS="SILLYDEV='$HOME/dev'\nSILLYTTY='$SILLYDEV/sillytty'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b $SILLYBAUD $SILLYTTY'\n"
+SILLYVARS="SILLYDEV='$HOME/dev'\nSILLYTTY='$SILLYDEV/sillytty'\nSILLYPIPE='$SILLYDEV/sillypipe'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b $SILLYBAUD $SILLYTTY'\n"
 
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"

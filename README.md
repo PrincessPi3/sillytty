@@ -41,3 +41,15 @@ Others:
 
 ## supprtorted devices
 ## supported software
+
+# scratch and notes
+working terminals
+* `nc localhost 31337`
+* `socat - tcp:localhost:31337`
+
+in progress:
+```
+mkfifo $SILLYPIPE
+nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
+socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
+```
