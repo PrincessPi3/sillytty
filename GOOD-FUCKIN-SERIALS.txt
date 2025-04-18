@@ -1,0 +1,32 @@
+PI3 GOOD SERIALS
+
+RCFILE
+```
+SILLYHOST=10.0.0.201
+SILLYPORT=31337
+SILLYPIPE=$HOME/dev/sillypipe
+SILLYPTY=$HOME/dev/sillypty
+SILLYPROTO=tcp
+SILLYBAUD=115200
+alias PROBESILLYDEV='file $HOME/dev/*;ls -lah $HOME/dev'
+alias KILLSILLYSOCAT='sudo killall socat; sudo killall nc; rm -f $HOME/dev/*'
+```
+
+# socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT,fork &
+# stop TCPUART server and connection
+# disconnect and reconnect serial physically
+# reconnect TCPUART
+
+## NEED TO BE TESTED ON TERMUX
+# linked pty
+socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &
+picocom -b $SILLYBAUD $SILLYPTY
+
+
+## ?WORKING ON TERMUX
+## ?WORKING AS ALIAS 
+# stdio
+socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT
+
+# basic nc terminal
+nc $SILLYHOST $SILLYPORT

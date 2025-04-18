@@ -41,6 +41,8 @@ Others:
 * Uninstall `uninstall-sillytty`
 * Standard nc terminal `nc-sillytty` 
 * stdio socat terminal `socat-sillytty`
+* get info on private dev pipes ttys links etc `PROBESILLYDEV`
+* kill socat, nc, delete pipes `KILLSILLYSOCAT`
 
 ## supprtorted devices
 ## supported software
