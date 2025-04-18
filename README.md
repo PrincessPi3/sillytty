@@ -43,6 +43,7 @@ Others:
 * stdio socat terminal `socat-sillytty`
 * get info on private dev pipes ttys links etc `PROBESILLYDEV`
 * kill socat, nc, delete pipes `KILLSILLYSOCAT`
+* picocom on the defaualt baud on the default link `picosilly`
 
 ## supprtorted devices
 ## supported software

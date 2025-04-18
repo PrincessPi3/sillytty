@@ -1,14 +1,9 @@
 # set -e # stop on errorz
 ### `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
+
 SILLYDEV=$HOME/dev
-SILLYTTY=$SILLYDEV/sillytty
-SILLYHOST=10.0.0.201
-SILLYPORT=31337
-SILLYPROTO=tcp
-SILLYBAUD=115200
-# SILLYPACKAGES=netcat-openbsd socat picocom wget
 RCFILE=$HOME/.bashrc
-# SILLYPATH=$PATH
+# SILLYPACKAGES=netcat-openbsd socat picocom wget
 
 # echo "updating repo"
 # pkg update
@@ -51,7 +46,7 @@ echo "making vardump-sillytty executable"
 chmod +x $PATH/vardump-sillytty
 echo $?
 
-SILLYVARS='SILLYDEV="$HOME/dev'\nSILLYTTY='$SILLYDEV/sillytty'\nSILLYPIPE='$SILLYDEV/sillypipe'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b $SILLYBAUD $SILLYTTY'\nalias nc-sillytty='nc $SILLYHOST $SILLYPORT'\nalias socat-sillytty='socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT'\nalias PROBESILLYDEV='file $HOME/dev/*;ls -lah $SILLYDEV'\nalias KILLSILLYSOCAT='killall socat; killall nc; rm -f $SILLYDEV/*'"
+SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias picosilly="picocom -b $SILLYBAUD $SILLYPTY"\nalias nc-sillytty="nc $SILLYHOST $SILLYPORT"\nalias socat-sillytty="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
 
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"
