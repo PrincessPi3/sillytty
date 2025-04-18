@@ -37,15 +37,15 @@ In TCPUART
     * `stop-sillytty`
 
 Others:
-* `vardump-sillytty` Sanity checks debugging and info 
-* `uninstall-sillytty` Uninstall 
-* `nc-sillytty` Standard nc terminal  
-* `socat-sillytty` stdio socat terminal 
+* `VARDUMP-SILLYTTY` Sanity checks debugging and info 
+* `UNINSTALL-SILLYTTY` Uninstall 
+* `NC-SILLYTTY` Standard nc terminal  
+* `SOCAT-SILLYTTY` stdio socat terminal 
 * `PROBESILLYDEV` get info on private dev pipes ttys links etc 
 * `KILLSILLYSOCAT` kill socat, nc, delete pipes 
 * `PICOSILLY` picocom on the defaualt baud on the default link 
 * `TTYSILLYTTY` alias of `socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &`
-* `newpty` development/debug spare function
+* `NEWPTY` development/debug spare function
 
 ## supprtorted devices
 ## supported software

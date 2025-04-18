@@ -1,0 +1,68 @@
+# set -e # stop on errorz
+### `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
+
+SILLYDEV=$HOME/dev
+RCFILE=$HOME/.bashrc
+# SILLYPACKAGES=netcat-openbsd socat picocom wget
+
+# echo "updating repo"
+# pkg update
+
+# echo "upgrading software"
+# pkg upgreade``
+
+# echo "installing preerquisites"
+# pkg install $SILLYPACKAGES
+
+echo "downloading start-sillytty"
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/START-SILLYTTY -O $PATH/START-SILLYTTY
+echo $?
+
+echo "downloading stop-sillytty"
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/STOP-SILLYTTY -O $PATH/STOP-SILLYTTY
+echo $?
+
+echo "downloading uninstall-sillytty"
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/UNINSTALL-SILLYTTY -O $PATH/UNINSTALL-SILLYTTY
+echo $?
+
+echo "downloading vardump-sillytty"
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/VARDUMP-SILLYTTY -O $PATH/VARDUMP-SILLYTTY
+echo $?
+
+echo "making START-SILLYTTY executable"
+chmod +x $PATH/START-SILLYTTY
+echo $?
+
+echo "making STOP-SILLYTTY executable"
+chmod +x $PATH/STOP-SILLYTTY
+echo $?
+
+echo "making uninstall-sillytty executable"
+chmod +x $PATH/UNINSTALL-SILLYTTY
+echo $?
+
+echo "making VARDUMP-SILLYFILLY executable"
+chmod +x $PATH/VARDUMP-SILLYFILLY
+echo $?
+
+SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias PICOSILLY="picocom -b $SILLYBAUD $SILLYPTY"\nalias NC-SILLYTTY="nc $SILLYHOST $SILLYPORT"\nalias SOCAT-SILLYTTY="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+
+# SILLYVARS+='alias newpty="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+SILLYVARS+='alias NEWPTY="socat pty,link=$SILLYPTY,raw $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+
+if [ ! -d "$SILLYDEV" ]; then
+        echo "$SILLYDEV not found, creating"
+        mkdir $SILLYDEV
+        echo $?
+fi
+
+echo "touching $RCFILE"
+touch $RCFILE
+echo $?
+
+echo "appending vars and alias to $RCFILE"
+echo -e $SILLYVARS >> $RCFILE
+echo $?
+
+echo "DONE! RESTART TERMUX"

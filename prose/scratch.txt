@@ -1,0 +1,125 @@
+next:
+    x harmonize the vars and aliases between pi and termux
+    test on termux
+    x alias implementations
+    X permissions mode=600 even doesnt work frick
+
+todo:
+    test UART with picocom
+    start to test other softwarbs
+    mayhaps consolidate da sillytty scripts into one
+    maybe drop wget in favor of curl in installer
+    devise target software and interfaces
+    test blinky butt pirate
+    print $SILLYTTY var and path on start
+    README
+        guide
+        details
+        supported hardware
+
+foxxy:
+    termux, termux-api addon and bit of free time
+    first you'll have to install side repos, namely root repo and x11 repo
+    (they're not side, but they're not enabled by default)
+    also you'll need to install termux-api-package
+    it's a helper script set that will aid you
+    install libusb FROM TERMUX REPO
+        it's a hacked version that hijacks normal workflow and makes requests to android api
+    then you'll have to recompile each and every package that wants to interact with your usb and uses libusb under the hood
+    this method makes /dev device directly and communicates with fd's directly
+    just... not as directly as it usually happens, android disallows any direct access
+    so then after you did all the preparations and recompiled things you'll just go
+    `termux-usb -l` to list possible devices
+    it may take up to a minute to initialize
+    you'll also see a usb usage request
+    don't forget to enable otg before!
+    also termux-api may crash, don't give a dime about it, it will work just as normal
+    `termux-usb -r /dev/bus/usb/001/002` to use listed device
+    it will make requests, maybe it'll ask you to access device
+    it also may take up to a minute or so
+    just don't kill the process
+    and then you go like
+    `termux-usb -e ./your-app-that-needs-usb /dev/bus/usb/001/002`
+    note that this is in fact just a shell wrapper
+    i haven't gone around rewriting it
+    so it is kinda cringe since it doesn't allow you to directly pick some of arguments
+    but since libusb is hijacked here you can access libusb internals just fine
+    tada
+    you have a working indirect file descriptor straight from android api
+    also
+    if an app doesn't work with that shell wrapper as-is you can specify env var or file descriptor directly
+    it fixed flashrom for me
+    it's enough to run flashrom, openocd, anything else
+    i want to make usb-ip workie
+    it would be best
+    those which use sysctl's - no workie
+    and you have to recompile things on your own
+    i could send you my helper scripts if you want
+    i haven't done porting nixpkgs around
+
+config.sh
+```
+env PKG_CONFIG_PATH=/data/data/com.termux/files/usr/local/lib/pkgconfig ./configure --prefix=/data/data/com.termux/files/usr/ -libdir /data/data/com.termux/files/usr/local/lib/ --datarootdir /data/data/com.termux/files/usr/share/ -includedir /data/data/com.termux/files/usr/local/include/ -mandir /data/data/com.termux/files/usr/share/man/ -datadir /data/data/com.termux/files/usr/share/ -libexecdir /data/data/com.termux/files/usr/libexec/ -bindir /data/data/com.termux/files/usr/bin/
+```
+
+meson.sh
+```
+--pkg-config-path /data/data/com.termux/files/usr/local/lib/pkgconfig --prefix /data/data/com.termux/files/usr/local --libdir /data/data/com.termux/files/usr/local/lib/ --datadir /data/data/com.termux/files/usr/share/ --includedir /data/data/com.termux/files/usr/local/include/ --mandir /data/data/com.termux/files/usr/share/man/ --datadir /data/data/com.termux/files/usr/share/ --libexecdir /data/data/com.termux/files/usr/libexec/ --bindir /data/data/com.termux/files/usr/bin/
+ @
+```
+
+tcp:localhost:31337
+socat -d -d pty,raw,echo=0,link=$SILLYTTY,noblock=1,b115200,fork $SILLYPIPE
+socat pty,pipe,raw,echo=0 tcp:10.0.0.201:31337
+
+// socat openpty,link=$HOME/dev/sillyopenpty tcp:10.0.0.201:31337
+
+ pty: Useful options: link, openpty, wait-slave, mode, user, group
+	      See also:	UNIX-LISTEN, PIPE, EXEC, SYSTEM
+`pty`  default/automatic
+`openpty` terminal using openpty()
+`ptmax` terminal using /dev/ptmx or /dev/ptc	
+?`ctty`   Makes the	pty the	controlling tty	of the sub process.
+// `pipes`  Creates a pair of	unnamed	pipes for  interprocess	 communication instead of a socket pair.
+// `PIPE:<filename>` If  <filename> already exists, it	is opened.  If is does not exist, a named pipe	is created and opened.
+
+`text` / `binary` text or binary mode
+
+`keepalive` keepalive connection
+`b115200` sets the baud to 115200
+
+`raw` raw mode
+`echo=0` disables local eecho
+? `fork` // test
+
+// `-lm[<facility>]` mixed log mode
+// -lmdaemon
+
+
+`crnl` use \r\n as line terminator instead of \n
+mode=<mode> permissions for stream [mode_t]
+umask=<mode> Sets  the	umask of the process to	<mode> [mode_t]	before access ing the file system entry	(useful	with  UNIX  domain  sockets!). This  call  might	 affect	 all  further  operations of the socat process!
+mode_t An unsigned integer, read	with strtoul(),	specifying mode	 (per-
+	      mission) bits.
+
+SILLYHOST=10.0.0.201
+SILLYPORT=31337
+SILLYPIPE=$HOME/dev/sillypipe
+SILLYPTY=$HOME/dev/sillypty
+SILLYPROTO=tcp
+SILLYBAUD=115200
+alias PROBESILLYDEV='file $HOME/dev/*;ls -lah $HOME/dev'
+alias KILLSILLYSOCAT='sudo killall socat; sudo killall nc; rm -f $HOME/dev/*'
+
+# socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT,fork &
+# stop TCPUART server and connection
+# disconnect and reconnect serial physically
+# reconnect TCPUART
+socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &
+picocom -b $SILLYBAUD $SILLYPTY
+
+mkfifo $SILLYPIPE
+nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
+socat -d pty,raw,echo=0,link=$SILLYPTY,b$SILLYBAUD,nonblock $SILLYPIPE &
+PROBESILLYDEV
+picocom -b $SILLYBAUD $SILLYPTY
