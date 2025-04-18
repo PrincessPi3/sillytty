@@ -1,16 +1,18 @@
-# source $HOME/.bashrc
-# mkfifo $SILLYPIPE
-# nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
-# socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
-
+# `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/live-dev-script | bash`
 source "$HOME/.bashrc"
-socat pty,link=$SILLYPTY,raw,group-late=dialout,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT
-PROBESILLYDEV
-PICOSILLY
+newptcmd="socat pty,link=$SILLYPTY,raw,group-late=dialout,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT"
+echo $newptycmd
+alias newpty="$newptycmd"
+# PROBESILLYDEV
+# PICOSILLY
 # nonblock=1
 # fork
 # echo=0
 
+# source $HOME/.bashrc
+# mkfifo $SILLYPIPE
+# nc $SILLYHOST $SILLYPORT > $SILLYPIPE &
+# socat -d -d pty,raw,echo=0,link=$SILLYTTY $SILLYPIPE
 
 # socat pty,nonblock=1,link=$SILLYTTY $SILLYPROTO:$SILLYHOST:$SILLYPORT &
 # nonblock=1

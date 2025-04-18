@@ -45,6 +45,7 @@ Others:
 * `KILLSILLYSOCAT` kill socat, nc, delete pipes 
 * `PICOSILLY` picocom on the defaualt baud on the default link 
 * `TTYSILLYTTY` alias of `socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &`
+* `newpty` development/debug `function in live-dev-script`
 
 ## supprtorted devices
 ## supported software
