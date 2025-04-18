@@ -1,7 +1,7 @@
 source $HOME/.bashrc
 
-echo "pinging $SILLYHOST"
-ping -c 2 $SILLYHOST
+echo "pinging $SILLYHOST one time"
+ping -c 1 $SILLYHOST
 echo $?
 
 echo "probing $SILLYHOST on $SILLYPROTO port $SILLYPOTR"

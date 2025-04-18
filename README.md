@@ -32,18 +32,19 @@ In TCPUART
     * _Start_
 3. Run Termux
     * `start-sillytty`
-    * picocom terminal: `picosilly`
-    * virtual tty device `$SILLYTTY`
+    * `picosilly` picocom terminal: 
+    * `$SILLYTTY` virtual tty device 
     * `stop-sillytty`
 
 Others:
-* Sanity checks debugging and info `vardump-sillytty`
-* Uninstall `uninstall-sillytty`
-* Standard nc terminal `nc-sillytty` 
-* stdio socat terminal `socat-sillytty`
-* get info on private dev pipes ttys links etc `PROBESILLYDEV`
-* kill socat, nc, delete pipes `KILLSILLYSOCAT`
-* picocom on the defaualt baud on the default link `picosilly`
+* `vardump-sillytty` Sanity checks debugging and info 
+* `uninstall-sillytty` Uninstall 
+* `nc-sillytty` Standard nc terminal  
+* `socat-sillytty` stdio socat terminal 
+* `PROBESILLYDEV` get info on private dev pipes ttys links etc 
+* `KILLSILLYSOCAT` kill socat, nc, delete pipes 
+* `PICOSILLY` picocom on the defaualt baud on the default link 
+* `TTYSILLYTTY` alias of `socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &`
 
 ## supprtorted devices
 ## supported software
