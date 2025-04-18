@@ -39,6 +39,8 @@ In TCPUART
 Others:
 * Sanity checks debugging and info `vardump-sillytty`
 * Uninstall `uninstall-sillytty`
+* Standard nc terminal `nc-sillytty` 
+* stdio socat terminal `socat-sillytty`
 
 ## supprtorted devices
 ## supported software
