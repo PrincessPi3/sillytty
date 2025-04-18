@@ -1,15 +1,22 @@
 source $HOME/.bashrc
 
-# printenv
+echo "$HOME/.bashrc"
+cat $HOME/.bashrc
+echo $?
+
+echo "printenv"
+printenv
+
+echo $?
+
 echo "SILLYDEV: $SILLYDEV"
 touch $SILLYDEV
 echo $?
+
 ls -lah $SILLYDEV
+echo $?
 
 echo "SILLYTTY: $SILLYTTY"
-# touch $SILLYTTY
-# echo $?
-# ls -lah $SILLYTTY
 
 echo "RCFILE: $HOME/.bashrc"
 cat $HOME/.bashrc
