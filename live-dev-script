@@ -1,4 +1,4 @@
-# `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/live-dev-script | bash`
+# `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/live-dev-script | bash`
 source "$HOME/.bashrc"
 newptcmd="socat pty,link=$SILLYPTY,raw,group-late=dialout,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT"
 echo $newptycmd

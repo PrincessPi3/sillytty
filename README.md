@@ -11,7 +11,7 @@ In termux
 1. `pkg update`
 2. `pkg upgrade`
 3. `pkg install netcat-openbsd socat picocom wget`
-4. `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
+4. `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
 5. `exit`
 
 In TCPUART
