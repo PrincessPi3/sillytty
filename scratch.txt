@@ -1,3 +1,9 @@
+next:
+    permssions issue with da fookin virtual tty
+        ? noblok
+        ? chmod
+        ? chown
+
 todo:
     test UART with picocom
     start to test other softwarbs
@@ -6,3 +12,47 @@ todo:
     devise target software and interfaces
     test blinky butt pirate
     print $SILLYTTY var and path on start
+    README
+        guide
+        details
+        supported hardware
+
+foxxy:
+    termux, termux-api addon and bit of free time
+    first you'll have to install side repos, namely root repo and x11 repo
+    (they're not side, but they're not enabled by default)
+    also you'll need to install termux-api-package
+    it's a helper script set that will aid you
+    install libusb FROM TERMUX REPO
+        it's a hacked version that hijacks normal workflow and makes requests to android api
+    then you'll have to recompile each and every package that wants to interact with your usb and uses libusb under the hood
+    this method makes /dev device directly and communicates with fd's directly
+    just... not as directly as it usually happens, android disallows any direct access
+    so then after you did all the preparations and recompiled things you'll just go
+    `termux-usb -l` to list possible devices
+    it may take up to a minute to initialize
+    you'll also see a usb usage request
+    don't forget to enable otg before!
+    also termux-api may crash, don't give a dime about it, it will work just as normal
+    `termux-usb -r /dev/bus/usb/001/002` to use listed device
+    it will make requests, maybe it'll ask you to access device
+    it also may take up to a minute or so
+    just don't kill the process
+    and then you go like
+    `termux-usb -e ./your-app-that-needs-usb /dev/bus/usb/001/002`
+    note that this is in fact just a shell wrapper
+    i haven't gone around rewriting it
+    so it is kinda cringe since it doesn't allow you to directly pick some of arguments
+    but since libusb is hijacked here you can access libusb internals just fine
+    tada
+    you have a working indirect file descriptor straight from android api
+    also
+    if an app doesn't work with that shell wrapper as-is you can specify env var or file descriptor directly
+    it fixed flashrom for me
+    it's enough to run flashrom, openocd, anything else
+    i want to make usb-ip workie
+    it would be best
+    those which use sysctl's - no workie
+    and you have to recompile things on your own
+    i could send you my helper scripts if you want
+    i haven't done porting nixpkgs around

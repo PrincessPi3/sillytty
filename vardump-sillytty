@@ -1,3 +1,5 @@
+source $HOME/.bashrc
+
 # printenv
 echo "SILLYDEV: $SILLYDEV"
 touch $SILLYDEV

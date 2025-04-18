@@ -14,7 +14,7 @@ SILLYPATH=$PATH
 # pkg update
 
 # echo "upgrading software"
-# pkg upgreade
+# pkg upgreade``
 
 # echo "installing preerquisites"
 # pkg install $SILLYPACKAGES
@@ -51,7 +51,7 @@ echo "making vardump-sillytty executable"
 chmod +x $SILLYPATH/vardump-sillytty
 echo $?
 
-SILLYVARS="SILLYDEV='\$HOME/dev'\nSILLYTTY='\$SILLYDEV/sillytty'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b \$SILLYBAUD \$SILLYTTY'\n"
+SILLYVARS="SILLYDEV='$HOME/dev'\nSILLYTTY='$SILLYDEV/sillytty'\nSILLYHOST='localhost'\nSILLYPORT=31337\nSILLYPROTO='tcp'\nSILLYBAUD=115200\nalias picosilly='picocom -b $SILLYBAUD $SILLYTTY'\n"
 
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"
