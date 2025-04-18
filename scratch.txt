@@ -56,3 +56,14 @@ foxxy:
     and you have to recompile things on your own
     i could send you my helper scripts if you want
     i haven't done porting nixpkgs around
+
+config.sh
+```
+env PKG_CONFIG_PATH=/data/data/com.termux/files/usr/local/lib/pkgconfig ./configure --prefix=/data/data/com.termux/files/usr/ -libdir /data/data/com.termux/files/usr/local/lib/ --datarootdir /data/data/com.termux/files/usr/share/ -includedir /data/data/com.termux/files/usr/local/include/ -mandir /data/data/com.termux/files/usr/share/man/ -datadir /data/data/com.termux/files/usr/share/ -libexecdir /data/data/com.termux/files/usr/libexec/ -bindir /data/data/com.termux/files/usr/bin/
+```
+
+meson.sh
+```
+--pkg-config-path /data/data/com.termux/files/usr/local/lib/pkgconfig --prefix /data/data/com.termux/files/usr/local --libdir /data/data/com.termux/files/usr/local/lib/ --datadir /data/data/com.termux/files/usr/share/ --includedir /data/data/com.termux/files/usr/local/include/ --mandir /data/data/com.termux/files/usr/share/man/ --datadir /data/data/com.termux/files/usr/share/ --libexecdir /data/data/com.termux/files/usr/libexec/ --bindir /data/data/com.termux/files/usr/bin/
+ @
+```
