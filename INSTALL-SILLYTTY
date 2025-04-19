@@ -49,7 +49,7 @@ SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLY
 
 # SILLYVARS+='alias newpty="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
 # SILLYVARS+='alias NEWPTY="socat pty,link=$SILLYPTY,raw $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
-SILLYVARS+="alias MKPIPE-SILLYTTY='mkfifo $SILLYPIPE; sleep 1; nc $SILLYHOST $SILLYPORT > $SILLYPIPE &';alias SOPIPE-SILLYTTY='socat -d -d pty,raw,echo=0,link=$SILLYPTY,mode=0666,nonblock $SILLYPIPE &'; alias PIPECONNECT-SILLYTTY='MKPIPE-SILLYTTY; sleep 3; SOPIPE-SILLYTTY; PROBESILLYDEV; sleep 1; picocom -b $SILLYBAUD $SILLYPTY'"
+SILLYVARS+="alias MKPIPE-SILLYTTY='mkfifo $SILLYPIPE; sleep 1; nc $SILLYHOST $SILLYPORT > $SILLYPIPE &';alias SOPIPE-SILLYTTY='socat -d -d pty,raw,echo=0,link=$SILLYPTY,mode=0666,nonblock,b`echo $SILLYBAUD` $SILLYPIPE &'; alias PIPECONNECT-SILLYTTY='MKPIPE-SILLYTTY; sleep 3; SOPIPE-SILLYTTY; PROBESILLYDEV; sleep 1; picocom -b $SILLYBAUD $SILLYPTY'"
 
 
 if [ ! -d "$SILLYDEV" ]; then
