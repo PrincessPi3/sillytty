@@ -1,6 +1,10 @@
 next:
+    make installer also reinstall
+        +add a shortcut for it frong
+        +?find a way to make it exit 4 u lmao
+    ?`stty` sets and reda serial device settings
     x harmonize the vars and aliases between pi and termux
-    test on termux
+    x test on termux
     x alias implementations
     X permissions mode=600 even doesnt work frick
 

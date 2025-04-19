@@ -1,8 +1,8 @@
 # `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/live-dev-script | bash`
-source "$HOME/.bashrc"
-newptcmd="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"
-echo $newptycmd
-alias newpty="$newptycmd"
+# source "$HOME/.bashrc"
+# newptcmd="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"
+# echo $newptycmd
+# alias newpty="$newptycmd"
 # PROBESILLYDEV
 # PICOSILLY
 # nonblock=1

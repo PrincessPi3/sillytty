@@ -45,7 +45,12 @@ Others:
 * `KILLSILLYSOCAT` kill socat, nc, delete pipes 
 * `PICOSILLY` picocom on the defaualt baud on the default link 
 * `TTYSILLYTTY` alias of `socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &`
+* Pipes
+    * `MKPIPE-SILLYTTY` makes a pipe from nc to $SILLYPIPE
+    * `SOPIPE-SILLYTTY` create link betwen $SILLYPIPE and SILLYPTY
+    * `PIPECONNECT-SILLYTTY` connect to the pipe link nc
 * `NEWPTY` development/debug spare function
+
 
 ## supprtorted devices
 ## supported software

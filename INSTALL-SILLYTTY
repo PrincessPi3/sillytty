@@ -48,7 +48,9 @@ echo $?
 SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias PICOSILLY="picocom -b $SILLYBAUD $SILLYPTY"\nalias NC-SILLYTTY="nc $SILLYHOST $SILLYPORT"\nalias SOCAT-SILLYTTY="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
 
 # SILLYVARS+='alias newpty="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
-SILLYVARS+='alias NEWPTY="socat pty,link=$SILLYPTY,raw $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+# SILLYVARS+='alias NEWPTY="socat pty,link=$SILLYPTY,raw $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
+SILLYVARS+="alias MKPIPE-SILLYTTY='mkfifo $SILLYPIPE; sleep 1; nc $SILLYHOST $SILLYPORT > $SILLYPIPE &';\nalias SOPIPE-SILLYTTY='socat -d -d pty,raw,echo=0,link=$SILLYPTY,mode=0666,nonblock $SILLYPIPE &';\nalias PIPECONNECT-SILLYTTY='MKPIPE-SILLYTTY; sleep 3; SOPIPE-SILLYTTY; PROBESILLYDEV; sleep 1; picocom -b $SILLYBAUD $SILLYPTY'"
+
 
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"
