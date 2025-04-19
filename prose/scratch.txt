@@ -3,6 +3,9 @@ next:
         +add a shortcut for it frong
         +?find a way to make it exit 4 u lmao
     ?`stty` sets and reda serial device settings
+    permissions on pipez
+        get pipez workan
+        make it a one command thingy doodie
     x harmonize the vars and aliases between pi and termux
     x test on termux
     x alias implementations
