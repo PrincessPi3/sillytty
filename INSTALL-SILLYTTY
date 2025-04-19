@@ -14,19 +14,18 @@ RCFILE=$HOME/.bashrc
 # echo "installing preerquisites"
 # pkg install $SILLYPACKAGES
 
-echo "downloading start-sillytty"
 wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/START-SILLYTTY -O $PATH/START-SILLYTTY
 echo $?
 
-echo "downloading stop-sillytty"
+echo "downloading STOP-SILLYTTY"
 wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/STOP-SILLYTTY -O $PATH/STOP-SILLYTTY
 echo $?
 
-echo "downloading uninstall-sillytty"
+echo "downloading UNINSTALL-SILLYTTY"
 wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/UNINSTALL-SILLYTTY -O $PATH/UNINSTALL-SILLYTTY
 echo $?
 
-echo "downloading vardump-sillytty"
+echo "downloading VARDUMP-SILLYTTY"
 wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/VARDUMP-SILLYTTY -O $PATH/VARDUMP-SILLYTTY
 echo $?
 
@@ -38,12 +37,12 @@ echo "making STOP-SILLYTTY executable"
 chmod +x $PATH/STOP-SILLYTTY
 echo $?
 
-echo "making uninstall-sillytty executable"
+echo "making UNINSTALL-SILLYTTY executable"
 chmod +x $PATH/UNINSTALL-SILLYTTY
 echo $?
 
-echo "making VARDUMP-SILLYFILLY executable"
-chmod +x $PATH/VARDUMP-SILLYFILLY
+echo "making VARDUMP-SILLYTTY executable"
+chmod +x $PATH/VARDUMP-SILLYTTY
 echo $?
 
 SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias PICOSILLY="picocom -b $SILLYBAUD $SILLYPTY"\nalias NC-SILLYTTY="nc $SILLYHOST $SILLYPORT"\nalias SOCAT-SILLYTTY="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
