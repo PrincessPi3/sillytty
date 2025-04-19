@@ -15,3 +15,4 @@ alias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $
 alias MKPIPE-SILLYTTY="mkfifo /home/princesspi/dev/sillypipe; sleep 1; nc 10.0.0.201 31337 > /home/princesspi/dev/sillypipe &"
 alias SOPIPE-SILLYTTY="socat -d -d pty,raw,echo=0,link=/home/princesspi/dev/sillypty,mode=0666,nonblock,b$SILLYBAUD /home/princesspi/dev/sillypipe &"
 alias PIPECONNECT-SILLYTTY="MKPIPE-SILLYTTY; sleep 3; SOPIPE-SILLYTTY; PROBESILLYDEV; sleep 1; picocom -b 115200 /home/princesspi/dev/sillypty"
+alias REINSTALL-SILLYTTY="curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/INSTALL-SILLYTTY | bash"
