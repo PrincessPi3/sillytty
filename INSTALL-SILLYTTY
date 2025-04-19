@@ -67,3 +67,5 @@ echo -e $SILLYVARS >> $RCFILE
 echo $?
 
 echo "DONE! RESTART TERMUX"
+
+exit
