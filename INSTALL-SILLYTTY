@@ -9,56 +9,54 @@ SILLYINSTALLEDFILE=$HOME/.sillytty-installed
 if [ -f "$SILLYINSTALLEDFILE" ]; then
         echo "sillytty install found, nuking";
         echo "Blanking $RCFILE";
-        echo echo "" > $RCFILE;
+        echo echo "" > "$RCFILE";
         echo $?;
 
         echo "nukan $SILLYDEV";
-        if [ -d "$SILLYDEV" ]; then
-                rm -rf $SILLYDEV
-                echo $?
+        if [ -d "$SILLYDEV" ]; then;
+                rm -rf "$SILLYDEV";
+                echo $?;
         fi
 
         echo "nukantanr da filez";
         for i in ${SILLYFILES[@]}; do
-                if [ -f $i ]; then
+                if [ -f "$i" ]; then
                         echo "nukan $i"
                         rm -f $i;
                         echo $?;
                 fi
         done;
 
-        if [ -f $RCFILE ]; then
+        if [ -f "$RCFILE" ]; then
                 echo "$RCFILE found, nuking";
-                echo echo "" > $RCFILE;
+                echo echo "" > "$RCFILE";
                 echo $?;
         fi
 fi   
 
-
-
 echo "downdootan .bashrc";
-wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/.bashrc -O $RCFILE
+wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/.bashrc" -O "$RCFILE";
 echo $?;
 
 echo "downloadan filez"
 for i in ${SILLYFILES[@]}; do
-    echo "Downloadin $i"
-    wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/$i -O $PATH/$i
-    echo $?
+    echo "Downloadin $i";
+    wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/$i" -O "$PATH/$i";
+    echo $?;
 
-    echo "Makin $i executable"
-    chmod +x $PATH/$i
-    echo $?
+    echo "Makin $i executable";
+    chmod +x "$PATH/$i";
+    echo $?;
 done
 
 if [ ! -d "$SILLYDEV" ]; then
-        echo "$SILLYDEV not found, creating"
-        mkdir $SILLYDEV
-        echo $?
+        echo "$SILLYDEV not found, creating";
+        mkdir "$SILLYDEV";
+        echo $?;
 fi
 
 echo "touching $SILLYINSTALLEDFILE"
-touch $SILLYINSTALLEDFILE;
+touch "$SILLYINSTALLEDFILE";
 echo $?;
 
 echo "DONE! RESTART TERMUX"
