@@ -1,9 +1,9 @@
 # set -e # stop on errorz
 ### `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
 
-SILLYDEV=$HOME/dev
-RCFILE=$HOME/.bashrc
-SILLYFILES=("START-SILLYTTY", "STOP-SILLYTTY", "UNINSTALL-SILLYTTY", ARDUMP-SILLYTTY);
+SILLYDEV="$HOME/dev";
+RCFILE="$HOME/.bashrc";
+SILLYFILES=("START-SILLYTTY", "STOP-SILLYTTY", "UNINSTALL-SILLYTTY", "VARDUMP-SILLYTTY");
 SILLYINSTALLEDFILE=$HOME/.sillytty-installed
 
 if [ -f "$SILLYINSTALLEDFILE" ]; then
@@ -13,7 +13,7 @@ if [ -f "$SILLYINSTALLEDFILE" ]; then
         echo $?;
 
         echo "nukan $SILLYDEV";
-        if [ -d "$SILLYDEV" ]; then;
+        if [ -d "$SILLYDEV" ]; then
                 rm -rf "$SILLYDEV";
                 echo $?;
         fi
