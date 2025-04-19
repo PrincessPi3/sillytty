@@ -3,54 +3,53 @@
 
 SILLYDEV=$HOME/dev
 RCFILE=$HOME/.bashrc
-# SILLYPACKAGES=netcat-openbsd socat picocom wget screen
+SILLYFILES=("START-SILLYTTY", "STOP-SILLYTTY", "UNINSTALL-SILLYTTY", ARDUMP-SILLYTTY);
+SILLYINSTALLEDFILE=$HOME/.sillytty-installed
 
-# echo "updating repo"
-# pkg update
+if [ -f "$SILLYINSTALLEDFILE" ]; then
+        echo "sillytty install found, nuking";
+        echo "Blanking $RCFILE";
+        echo echo "" > $RCFILE;
+        echo $?;
 
-# echo "upgrading software"
-# pkg upgreade``
+        echo "nukan $SILLYDEV";
+        if [ -d "$SILLYDEV" ]; then
+                rm -rf $SILLYDEV
+                echo $?
+        fi
 
-# echo "installing preerquisites"
-# pkg install $SILLYPACKAGES
+        echo "nukantanr da filez";
+        for i in ${SILLYFILES[@]}; do
+                if [ -f $i ]; then
+                        echo "nukan $i"
+                        rm -f $i;
+                        echo $?;
+                fi
+        done;
 
-wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/START-SILLYTTY -O $PATH/START-SILLYTTY
-echo $?
+        if [ -f $RCFILE ]; then
+                echo "$RCFILE found, nuking";
+                echo echo "" > $RCFILE;
+                echo $?;
+        fi
+fi   
 
-echo "downloading STOP-SILLYTTY"
-wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/STOP-SILLYTTY -O $PATH/STOP-SILLYTTY
-echo $?
 
-echo "downloading UNINSTALL-SILLYTTY"
-wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/UNINSTALL-SILLYTTY -O $PATH/UNINSTALL-SILLYTTY
-echo $?
 
-echo "downloading VARDUMP-SILLYTTY"
-wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/VARDUMP-SILLYTTY -O $PATH/VARDUMP-SILLYTTY
-echo $?
+echo "downdootan .bashrc";
+wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/.bashrc -O $RCFILE
+echo $?;
 
-echo "making START-SILLYTTY executable"
-chmod +x $PATH/START-SILLYTTY
-echo $?
+echo "downloadan filez"
+for i in ${SILLYFILES[@]}; do
+    echo "Downloadin $i"
+    wget https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/$i -O $PATH/$i
+    echo $?
 
-echo "making STOP-SILLYTTY executable"
-chmod +x $PATH/STOP-SILLYTTY
-echo $?
-
-echo "making UNINSTALL-SILLYTTY executable"
-chmod +x $PATH/UNINSTALL-SILLYTTY
-echo $?
-
-echo "making VARDUMP-SILLYTTY executable"
-chmod +x $PATH/VARDUMP-SILLYTTY
-echo $?
-
-SILLYVARS='SILLYDEV="$HOME/dev"\nSILLYTTY="$SILLYDEV/sillypty"\nSILLYPTY="$SILLYDEV/sillypty"\nSILLYPIPE="$SILLYDEV/sillypipe"\nSILLYHOST="localhost"\nSILLYPORT=31337\nSILLYPROTO="tcp"\nSILLYBAUD=115200\nalias PICOSILLY="picocom -b $SILLYBAUD $SILLYPTY"\nalias NC-SILLYTTY="nc $SILLYHOST $SILLYPORT"\nalias SOCAT-SILLYTTY="socat - $SILLYPROTO:$SILLYHOST:$SILLYPORT"\nalias PROBESILLYDEV="file $SILLYDEV/*;ls -lah $SILLYDEV"\nalias KILLSILLYSOCAT="killall socat; killall nc; rm -f $SILLYDEV/*"\nalias TTYSILLYTTY="socat -d pty,link=$SILLYPTY,b$SILLYBAUD,raw,echo=0,nonblock $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
-
-# SILLYVARS+='alias newpty="socat pty,link=$SILLYPTY,raw,group-late=everybody,mode=666 $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
-# SILLYVARS+='alias NEWPTY="socat pty,link=$SILLYPTY,raw $SILLYPROTO:$SILLYHOST:$SILLYPORT &"\n'
-SILLYVARS+="alias MKPIPE-SILLYTTY='mkfifo $SILLYPIPE; sleep 1; nc $SILLYHOST $SILLYPORT > $SILLYPIPE &';alias SOPIPE-SILLYTTY='socat -d -d pty,raw,echo=0,link=$SILLYPTY,mode=0666,nonblock,b`echo $SILLYBAUD` $SILLYPIPE &'; alias PIPECONNECT-SILLYTTY='MKPIPE-SILLYTTY; sleep 3; SOPIPE-SILLYTTY; PROBESILLYDEV; sleep 1; picocom -b $SILLYBAUD $SILLYPTY'"
-
+    echo "Makin $i executable"
+    chmod +x $PATH/$i
+    echo $?
+done
 
 if [ ! -d "$SILLYDEV" ]; then
         echo "$SILLYDEV not found, creating"
@@ -58,14 +57,9 @@ if [ ! -d "$SILLYDEV" ]; then
         echo $?
 fi
 
-echo "touching $RCFILE"
-touch $RCFILE
-echo $?
-
-echo "appending vars and alias to $RCFILE"
-echo -e $SILLYVARS >> $RCFILE
-echo $?
+echo "touching $SILLYINSTALLEDFILE"
+touch $SILLYINSTALLEDFILE;
+echo $?;
 
 echo "DONE! RESTART TERMUX"
-
 exit
