@@ -35,13 +35,13 @@ if [ -f "$SILLYINSTALLEDFILE" ]; then
 fi   
 
 echo "downdootan .bashrc";
-wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/.bashrc" -O "$RCFILE";
+wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/.bashrc?nocache=$RANDOM" -O "$RCFILE";
 echo $?;
 
 echo "downloadan filez"
 for i in ${SILLYFILES[@]}; do
     echo "Downloadin $i";
-    wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/$i" -O "$PATH/$i";
+    wget "https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/$i?nocache=$RANDOM" -O "$PATH/$i";
     echo $?;
 
     echo "Makin $i executable";
