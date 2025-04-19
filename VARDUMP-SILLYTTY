@@ -22,16 +22,16 @@ echo "RCFILE: $HOME/.bashrc"
 cat $HOME/.bashrc
 echo $?
 
-whereis start-sillyfilly
+whereis START-SILLYTTY
 echo $?
 
-whereis stop-sillyfilly
+whereis STOP-SILLYTTY
 echo $?
 
-whereis vardump-sillyfilly
+whereis VARDUMP-SILLYTTY
 echo $?
 
-whereis uninstall-sillyfilly
+whereis UNINSTALL-SILLYTTY
 echo $?
 
 echo "SILLYHOST: $SILLYHOST"

@@ -3,7 +3,7 @@
 
 SILLYDEV=$HOME/dev
 RCFILE=$HOME/.bashrc
-# SILLYPACKAGES=netcat-openbsd socat picocom wget
+# SILLYPACKAGES=netcat-openbsd socat picocom wget screen
 
 # echo "updating repo"
 # pkg update
