@@ -1,5 +1,5 @@
 # set -e # stop on errorz
-### `curl https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/INSTALL-SILLYTTY | bash`
+### `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/INSTALL-SILLYTTY?nocache=$RANDOM | bash`
 
 SILLYDEV="$HOME/dev";
 RCFILE="$HOME/.bashrc";

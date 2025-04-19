@@ -11,7 +11,7 @@ In termux
 1. `pkg update`
 2. `pkg upgrade`
 3. `pkg install netcat-openbsd socat picocom wget`
-4. `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/install-sillytty | bash`
+4. `curl -s https://raw.githubusercontent.com/PrincessPi3/sillytty/refs/heads/master/INSTALL-SILLYTTY?nocache=$RANDOM | bash`
 5. `exit`
 
 In TCPUART
@@ -38,7 +38,7 @@ In TCPUART
 
 Others:
 * `VARDUMP-SILLYTTY` Sanity checks debugging and info 
-* `UNINSTALL-SILLYTTY` Uninstall 
+* `REINSTALL-SILLYTTY` reinstall tool
 * `NC-SILLYTTY` Standard nc terminal  
 * `SOCAT-SILLYTTY` stdio socat terminal 
 * `PROBESILLYDEV` get info on private dev pipes ttys links etc 
